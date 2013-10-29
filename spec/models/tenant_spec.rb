@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Tenant do
-
-  before { @tenant = Tenant.new(name: "John Tenant", 
+  
+  let(:building) { FactoryGirl.create(:building) }
+  before { @tenant = building.tenants.build(name: "John Tenant", 
                                 email: "tenant@example.com",
                                 phone: "555-234-3893") }
 
@@ -11,6 +12,9 @@ describe Tenant do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:phone) }
+  it { should respond_to(:building_id) }
+  it { should respond_to(:building) }
+  its(:building) { should eq building }
 
   it { should be_valid }
 

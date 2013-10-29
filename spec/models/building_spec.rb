@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Building do
 
-  before { @building = Building.new(address: "2316 s. whipple", 
+  let(:landlord) { FactoryGirl.create(:landlord) }
+  before { @building = landlord.buildings.build(address: "2316 s. whipple", 
                                     zip_code: 60623, 
                                     description: "a lovely brownstone") }
 
@@ -12,6 +13,9 @@ describe Building do
   it { should respond_to(:zip_code) }
   it { should respond_to(:description) }
   it { should respond_to(:landlord_id) }
+  it { should respond_to(:landlord) }
+  it { should respond_to(:tenants) }
+  its(:landlord) { should eq landlord }
 
   it { should be_valid }
 

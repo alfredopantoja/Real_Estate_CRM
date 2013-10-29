@@ -11,6 +11,7 @@ describe Landlord do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:phone) }
+  it { should respond_to(:buildings) }
 
   it { should be_valid }
 
