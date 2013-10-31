@@ -8,6 +8,10 @@ class LandlordsController < ApplicationController
     @landlord = Landlord.new
   end
 
+  def index 
+    @landlords = Landlord.paginate(page: params[:page])
+  end  
+
   def create
     @landlord = Landlord.new(landlord_params)
     if @landlord.save
@@ -17,6 +21,26 @@ class LandlordsController < ApplicationController
       render 'new'
     end
   end  
+
+  def edit
+    @landlord = Landlord.find(params[:id])
+  end  
+
+  def update
+    @landlord = Landlord.find(params[:id])
+    if @landlord.update_attributes(landlord_params)
+      flash[:success] = "Landlord updated."
+      redirect_to @landlord
+    else
+      render 'edit'
+    end
+  end  
+
+  def destroy
+    Landlord.find(params[:id]).destroy
+    flash[:success] = "Landlord deleted."
+    redirect_to landlords_url
+  end
 
   private
 

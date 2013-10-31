@@ -1,0 +1,10 @@
+<% provide(:title, 'All landlords') %>
+<h1>All landlords</h1>
+
+<%= will_paginate %>
+
+<ul class="landlords">
+  <%= render @landlords %>
+</ul>    
+
+<%= will_paginate %>
