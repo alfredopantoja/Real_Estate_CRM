@@ -2,6 +2,7 @@ class LandlordsController < ApplicationController
 
   def show
     @landlord = Landlord.find(params[:id])
+    @buildings = @landlord.buildings.paginate(page: params[:page])
   end
 
   def new

@@ -6,4 +6,13 @@
       <p><%= @landlord.email %> <%= @landlord.phone %></p>
     </section>
   </aside>
+  <div class="span8">
+    <% if @landlord.buildings.any? %>
+      <h3>Buildings (<%= @landlord.buildings.count %>)</h3>
+      <ol class="buildings">
+        <%= render @buildings %>
+      </ol>
+      <%= will_paginate @buildings %>
+    <% end %>
+  </div>    
 </div>  

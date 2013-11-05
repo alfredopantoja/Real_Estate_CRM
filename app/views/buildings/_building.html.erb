@@ -1,0 +1,7 @@
+<li>
+  <span class="address"><%= building.address %>, <%= building.zip_code %></span>
+  <span class="description"><%= building.description %></span>
+  <%= link_to "delete", [@landlord, building], method: :delete, 
+                                  data: { confirm: "You sure?" } %>
+</li>    
+

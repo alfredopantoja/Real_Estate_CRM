@@ -38,10 +38,23 @@ describe "Landlord pages" do
 
   describe "show page" do
     let(:landlord) { FactoryGirl.create(:landlord) }
+    let!(:building1) { FactoryGirl.create(:building, address: "123 main st.", 
+                                                     zip_code: 60402,
+                                                     description: "a beautiful building") }
+    let!(:building2) { FactoryGirl.create(:building, address: "332 whipple st.", 
+                                                     zip_code: 60623,
+                                                     description: "a beautiful building") }
+
     before { visit landlord_path(landlord) }
 
     it { should have_content(landlord.name) }
     it { should have_title(landlord.name) }
+
+    describe "buildings" do
+      it { should have_content(building1.address) }
+      it { should have_content(building2.address) }
+      it { should have_content(landlord.buildings.count) }
+    end  
   end  
 
   describe "new page" do

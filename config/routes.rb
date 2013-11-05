@@ -1,5 +1,8 @@
 RealEstateCrm::Application.routes.draw do
-  resources :landlords
+  resources :landlords do
+    resources :buildings
+  end
+  resources :buildings
   root 'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
