@@ -5,7 +5,8 @@ class BuildingsController < ApplicationController
     @landlord = Landlord.find(params[:landlord_id])
   end  
 
-  def index
+  def show
+    @building = @landlord.buildings.find(params[:id])
   end  
   
   def new
@@ -22,6 +23,20 @@ class BuildingsController < ApplicationController
     end  
   end
 
+  def edit 
+    @building = @landlord.buildings.find(params[:id])
+  end  
+
+  def update
+    @building = @landlord.buildings.find(params[:id])
+    if @building.update_attributes(building_params)
+      flash[:success] = "Building updated"
+      redirect_to @building
+    else
+      render 'edit'
+    end
+  end  
+
   def destroy
     @building = @landlord.buildings.find(params[:id])
     @building.destroy
@@ -29,7 +44,6 @@ class BuildingsController < ApplicationController
   end
 
   private
-
 
     def building_params
       params.require(:building).permit(:address, :zip_code, :description)
